@@ -6,6 +6,7 @@ package com.project.CardShopgroupe9.repository;
 import com.project.CardShopgroupe9.model.Card;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author g.de-monteynard
@@ -13,5 +14,6 @@ import java.util.List;
  */
 public interface CardRepository extends CrudRepository<Card, Integer> {
 	
-	public List<Card> findByName(String name);
+	public Optional<Card> findById(int id);
+	public List<Card> findAll();
 }

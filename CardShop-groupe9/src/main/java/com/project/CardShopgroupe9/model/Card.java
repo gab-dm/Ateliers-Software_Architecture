@@ -1,15 +1,13 @@
 package com.project.CardShopgroupe9.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name="Card")
 public final class Card {
 
-@Id
-@GeneratedValue
 
+@Id
 private Integer id;
 private String name;
 private Integer hp;
@@ -20,6 +18,9 @@ private Integer defence;
 private String family;
 private Integer energy;
 	
+	public Card() {}
+
+
 	public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, String family, Integer energy ) {
 		
 		super();
