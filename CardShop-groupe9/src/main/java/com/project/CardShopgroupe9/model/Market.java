@@ -8,6 +8,8 @@ import java.util.Date;
 @Entity(name="Market")
 public class Market {
 	@Id
+	private int marketId;
+	@Id
 	private int cardId;
 	@Id
 	private int userId;
@@ -16,10 +18,19 @@ public class Market {
 	
 	public Market() {}
 	
-	public Market(int cardId, int userId, Date onMarketDate) {
+	public Market(int marketId, int cardId, int userId, Date onMarketDate) {
+		this.marketId = marketId;
 		this.cardId = cardId;
 		this.userId = userId;
 		this.onMarketDate = new Date();
+	}
+	
+	public int getMarketId() {
+		return marketId;
+	}
+	
+	public void setMarketId(int marketId) {
+		this.marketId = marketId;
 	}
 	
 	public int getCardId() {
