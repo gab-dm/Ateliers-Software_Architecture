@@ -1,10 +1,9 @@
-
 <!doctype html>
 <html lang="fr-FR">
 
     <head>
         <meta charset="UTF-8" />
-        <title>Card Shop</title>
+        <title>Connexion</title>
         <link rel="stylesheet" href="CardShop-groupe9/src/main/resources/css/style.css">
         
 
@@ -17,20 +16,19 @@
 
             
             <div align="center">
-                <h2> Inscription </h2>
+                <h2> Connexion </h2>
                 <br />
-                <form method="POST" action="register">
+                <form method="POST" action="login">
                     <table >
                         <tr>
                             <td align="right">
-                                <label for "Nom">Nom :</label>
+                                <label for "Identifiant">Identifiant :</label>
                             </td>
                             <td >
-                                <input name="Nom" type="text" placeholder="Votre Nom" />
+                                <input name="Identifiant" type="text" placeholder="Votre Identifiant (votre mail)" />
                             </td>
                         </tr>
                        
-                        <tr>
                             <td align="right">
                                 <label for "pass">Mot de passe :</label>
                             </td>
@@ -43,11 +41,13 @@
                     </table>
 
                     <br />
-                    <input type="submit" name="formu_inscription" value="Valider le formulaire" />
+                    <input type="submit" name="formu_connexion" value="se connecter" />
+                    
                     <br /><br /><br />
                                  
                 </form>
-            
+                <p align="center"><a onclick href="Inscription.html" >S'inscrire</a></p>
+                
             </div>
 
 

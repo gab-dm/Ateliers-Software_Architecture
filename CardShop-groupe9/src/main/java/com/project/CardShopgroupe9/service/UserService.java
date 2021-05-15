@@ -9,7 +9,7 @@ import com.project.CardShopgroupe9.model.User;
 import com.project.CardShopgroupe9.repository.UserRepository;
 
 
-import org.mindrot.jbcrypt.BCrypt;
+
 
 @Service
 public class UserService {
@@ -18,9 +18,15 @@ public class UserService {
 	
 	UserRepository uRepository;
 	
-	public void addUser(User u) {
-		User createdUser=uRepository.save(u);
-		System.out.println(createdUser);
+	public boolean addUser(User u) {
+		if(uRepository.findByName(u.getName())==null) {
+			User createdUser=uRepository.save(u);
+			System.out.println(createdUser);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public User getUserById(int id) {
@@ -31,9 +37,8 @@ public class UserService {
 			return null;
 		}
 	}
-	//a retravailler
+	//a retravailler // je ne sais toujours pas vraiment comment faire :/
 	public void UpdateUser (User u ) {
-		
 		
 	}
 	
@@ -42,12 +47,6 @@ public class UserService {
 		return null;
 		
 	}
-	 /**
-     * Methode pour hacher le mot de passe
-     */
-    public String hashPassword(String plainTextPassword){
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-    } 
 
 
 

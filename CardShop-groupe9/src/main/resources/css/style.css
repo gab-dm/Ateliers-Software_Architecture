@@ -1,0 +1,159 @@
+@charset "ISO-8859-1";
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Trebuchet MS";
+}
+
+header {
+    background-color: #0D2450;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    width: 100%;
+    padding: 1px 0px;
+    z-index: 3;
+}
+
+header h1 {
+    margin: 5px;
+}
+
+a#backtohome,
+a#backtohome:link,
+a#backtohome:visited {
+    color: white;
+    font-family: Georgia;
+    text-decoration: none;
+    margin: auto;
+}
+
+nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #0D2450;
+    color: white;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    z-index: 3;
+}
+
+ul#NavBar {
+    list-style-type: none;
+    border-bottom: 4px solid #314b80;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+li.listM {
+    background: linear-gradient(#0d2450 30%, #314b80);
+    float: left;
+    margin: 0px 5px;
+    padding: 0px 10px;
+}
+
+li.listM a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.listM:hover {
+    background: linear-gradient(#0d2450 20%, #5371ad);
+}
+
+li.listMD {
+    background: linear-gradient(#0d2450 30%, #314b80);
+    float: right;
+    margin: 0px 5px;
+    padding: 0px 10px;
+}
+
+li.listMD a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.listMD:hover {
+    background: linear-gradient(#0d2450 20%, #5371ad);
+}
+
+#deconnexion {
+    color: black;
+    font-size: 15px;
+    float: right;
+    display: none;
+}
+
+button#topbutton {
+    display: none;
+}
+
+div#FormAcc {
+    padding: 10px;
+    z-index: 1;
+}
+
+.H_grid-container {
+    display: grid;
+    margin: 40px 0px 40px 0px;
+    grid-template-columns: 400px 400px 400px;
+    grid-gap: 50px 50px;
+    justify-content: space-evenly;
+    z-index: 2;
+}
+
+.H_grid-item {
+    text-align: center;
+    box-shadow: 0 3px 3px 0 rgb(177, 177, 177);
+    padding-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.H_grid-item img {
+    width: 100%;
+    height: 270px;
+    margin-bottom: 10px;
+}
+
+.H_grid-item:hover {
+    transform: scale(1.12, 1.12);
+}
+
+.H_grid-item a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.D_grid-container {
+    display: grid;
+    grid-template-columns: 400px;
+    grid-gap: 50px 50px;
+}
+
+.D_grid-item {
+    width: auto;
+    height: auto;
+    margin: 10px;
+}
+
+footer,
+footer a {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    text-decoration: none;
+    list-style-type: disc;
+}
+
+footer li:hover {
+    text-decoration: underline;
+}

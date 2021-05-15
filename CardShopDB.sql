@@ -1,10 +1,10 @@
 drop table if exists Cards cascade;
 drop table if exists Users cascade;
-
+drop table if exists Sessions cascade;
 
 create table Cards(idCard INTEGER NOT NULL PRIMARY KEY, Name VARCHAR(30) NOT NULL, HP INTEGER NOT NULL, Attack INTEGER NOT NULL, Defense INTEGER NOT NULL, Description VARCHAR(500),imgUrl VARCHAR(500));
 create table Users(idUser INTEGER NOT NULL PRIMARY KEY, Name VARCHAR(30) NOT NULL, Password VARCHAR(30) NOT NULL, Solde INTEGER);
-
+create table Sessions(id INTEGER NOT NULL PRIMARY KEY, idUser INTEGER NOT NULL, token VARCHAR(30) NOT NULL, ip VARCHAR(30) NOT NULL,   );
 
 
 insert into Cards values(1,'Superman', 100 ,50, 60,'Superman a été créé en Janvier 1933 par l’écrivain Jerry Siegel et l’artiste canadien Joe Shuster. Il fait partie des héros fictifs les plus connus. Fort et courageux, le héros est prêt à tout pour sauver les gens','https://lewebpedagogique.com/leblogdes5e/files/2016/12/Superman-233x300.jpg');
