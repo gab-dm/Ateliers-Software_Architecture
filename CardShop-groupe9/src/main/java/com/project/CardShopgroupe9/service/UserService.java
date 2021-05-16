@@ -46,9 +46,9 @@ public class UserService {
 			return null;
 		}
 	}
-	//a retravailler // je ne sais toujours pas vraiment comment faire :/
+	
 	public void UpdateUser (User u ) {
-		
+		uRepository.save(u);
 	}
 	
 	//On supprime l'utilisateur depuis son ID.

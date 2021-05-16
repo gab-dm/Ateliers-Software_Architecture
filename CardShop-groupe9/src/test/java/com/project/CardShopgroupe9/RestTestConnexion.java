@@ -17,7 +17,7 @@ public class RestTestConnexion {
 	
 	
 	//encore une métrise très partielle de cette ligne
-    public static final String REST_SERVICE_URI = "http://localhost:8081/SpringBootRestApi/api";
+    public static final String REST_SERVICE_URI = "http://localhost:8081/";
       
     /* GET */
     
