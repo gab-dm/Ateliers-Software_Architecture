@@ -2,7 +2,6 @@ package com.project.CardShopgroupe9.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
 
 
 @Entity(name="Market")
@@ -13,16 +12,14 @@ public class Market {
 	private int cardId;
 	@Id
 	private int userId;
-	private Date onMarketDate;
 	
 	
 	public Market() {}
 	
-	public Market(int marketId, int cardId, int userId, Date onMarketDate) {
+	public Market(int marketId, int cardId, int userId) {
 		this.marketId = marketId;
 		this.cardId = cardId;
 		this.userId = userId;
-		this.onMarketDate = new Date();
 	}
 	
 	
@@ -51,12 +48,5 @@ public class Market {
         this.userId = userId;
     }
 	
-    public Date getOnMarketDate() {
-        return onMarketDate;
-    }
-
-    public void setOnMarketDate(Date onMarketDate) {
-        this.onMarketDate = onMarketDate;
-    }
 
 }

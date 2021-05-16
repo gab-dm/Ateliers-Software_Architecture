@@ -17,7 +17,7 @@ private Integer attack;
 private Integer defence;
 private String family;
 private Integer energy;
-private Integer price;
+private static Integer price;
 	
 	public Card() {}
 
@@ -33,7 +33,7 @@ private Integer price;
 		this.defence = defence;
 		this.family = family;
 		this.energy = energy;
-		this.price = price;
+		Card.price = price;
 		
 	}
 
@@ -109,10 +109,10 @@ private Integer price;
 	}
 	
 	public void setPrice(Integer price) {
-		this.price = price;
+		Card.price = price;
 	}
 	
-	public Integer getPrice() {
+	public static Integer getPrice() {
 		return price;
 	}
 	
