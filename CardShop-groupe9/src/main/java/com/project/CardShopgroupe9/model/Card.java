@@ -17,11 +17,12 @@ private Integer attack;
 private Integer defence;
 private String family;
 private Integer energy;
+private Integer price;
 	
 	public Card() {}
 
 
-	public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, String family, Integer energy ) {
+	public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, String family, Integer energy, Integer price ) {
 		
 		super();
 		this.name = name;
@@ -32,6 +33,7 @@ private Integer energy;
 		this.defence = defence;
 		this.family = family;
 		this.energy = energy;
+		this.price = price;
 		
 	}
 
@@ -106,9 +108,18 @@ private Integer energy;
 		return family;
 	}
 	
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	
+	public Integer getPrice() {
+		return price;
+	}
+	
 	@Override
 	public String toString() {
 		return "Carte ["+getId()+"]: name:"+getName()+", family:"+getFamily() +", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence() +", energy:"+getEnergy();
 	}
+	
 
 } 

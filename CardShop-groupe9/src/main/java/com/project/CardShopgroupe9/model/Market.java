@@ -53,7 +53,7 @@ public class Market {
         return onMarketDate;
     }
 
-    public void setOnMarketSince(Date onMarketDate) {
+    public void setOnMarketDate(Date onMarketDate) {
         this.onMarketDate = onMarketDate;
     }
 
