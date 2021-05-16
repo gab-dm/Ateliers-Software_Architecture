@@ -25,6 +25,8 @@ public class Market {
 		this.onMarketDate = new Date();
 	}
 	
+	
+	
 	public int getMarketId() {
 		return marketId;
 	}

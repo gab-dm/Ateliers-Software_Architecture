@@ -1,5 +1,9 @@
 package com.project.CardShopgroupe9.rest;
 
+import java.util.List;
+
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.CardShopgroupe9.model.Card;
 import com.project.CardShopgroupe9.model.Session;
 import com.project.CardShopgroupe9.model.User;
+import com.project.CardShopgroupe9.model.Market;
 import com.project.CardShopgroupe9.repository.CardRepository;
+import com.project.CardShopgroupe9.repository.MarketRepository;
 import com.project.CardShopgroupe9.repository.UserRepository;
 import com.project.CardShopgroupe9.service.SessionService;
 import com.project.CardShopgroupe9.service.UserService;
@@ -22,6 +28,7 @@ public class MarketRestCrt {
 	UserService uService;
 	UserRepository uRepository;
 	CardRepository cRepository;
+	MarketRepository mRepository;
 	private SessionService sessionService;
 	
 	 public static final Logger logger = LoggerFactory.getLogger(UserRestCrt.class);
@@ -52,18 +59,28 @@ public class MarketRestCrt {
 		} 
     }
 	@RequestMapping(method=RequestMethod.POST,value="/sell")
-	public String SellCard(String token,  int cardId,  int sellerId, HttpServletResponse response,HttpServletRequest request) {
+	public String SellCard(String token,  int cardId, HttpServletResponse response,HttpServletRequest request) {
 	       
-		 	User seller = uRepository.findById(sellerId).get();
-		 	Card card = cRepository.findById(cardId).get();
-		 	
-		 	if (seller.getSolde()<Card.getPrice()) {
-				return "Pas assez d'argent";
-				
+		User seller = sessionService.isLogged(token , request);
+	 	
+	 	Card card = cRepository.findById(cardId).get();
+	 	
+	 	List<Market> MarketList = mRepository.findAll();
+			
+		for (Market market : MarketList) {
+			
+			boolean carteEnVente = false;
+			if ((market.getCardId() == card.getId()) && market.getUserId()==seller.getId() ) {
+				carteEnVente =true;
 			}
-			else {
-				seller.setSolde(seller.getSolde()-Card.getPrice());
-				seller.addCard(card);
-			} 
-	    }
+		}
+		if (!CarteEnVente) {
+			Market newMarket = new Market(card.getId(), seller.getId());
+			return "carte mise en vente";
+			
+		}
+		else {
+			return "la carte est déja en vente";
+		}
+    }
 }
