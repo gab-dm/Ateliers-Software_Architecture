@@ -1,6 +1,7 @@
 package com.project.CardShopgroupe9.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name="Card")
@@ -8,6 +9,7 @@ public final class Card {
 
 
 @Id
+@GeneratedValue
 private Integer id;
 private String name;
 private Integer hp;

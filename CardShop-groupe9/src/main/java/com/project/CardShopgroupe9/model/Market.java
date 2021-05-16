@@ -1,12 +1,14 @@
 package com.project.CardShopgroupe9.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity(name="Market")
 public class Market {
 	@Id
+	@GeneratedValue
 	private int marketId;
 	@Id
 	private int cardId;
@@ -16,8 +18,8 @@ public class Market {
 	
 	public Market() {}
 	
-	public Market(int marketId, int cardId, int userId) {
-		this.marketId = marketId;
+	public Market( int cardId, int userId) {
+		
 		this.cardId = cardId;
 		this.userId = userId;
 	}

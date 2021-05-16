@@ -34,7 +34,7 @@ public class MarketRestCrt {
 	 public static final Logger logger = LoggerFactory.getLogger(UserRestCrt.class);
 	
 	@RequestMapping(method=RequestMethod.POST,value="/buy")
-    public String BuyCard(String token, int cardId,  int sellerId, HttpServletResponse response,HttpServletRequest request) {
+    public String BuyCard(Market market, String token, int cardId,  int sellerId, HttpServletResponse response,HttpServletRequest request) {
        
 		User buyer = sessionService.isLogged(token , request);
 	 	User seller = uRepository.findById(sellerId).get();
@@ -55,6 +55,7 @@ public class MarketRestCrt {
 			seller.removeCard(card);
 			uService.UpdateUser(seller);
 			
+			mRepository.delete(market);
 			return "transaction effectuee";
 		} 
     }
@@ -66,17 +67,20 @@ public class MarketRestCrt {
 	 	Card card = cRepository.findById(cardId).get();
 	 	
 	 	List<Market> MarketList = mRepository.findAll();
-			
+		
+	 	boolean carteEnVente = false;
 		for (Market market : MarketList) {
 			
-			boolean carteEnVente = false;
+			
 			if ((market.getCardId() == card.getId()) && market.getUserId()==seller.getId() ) {
 				carteEnVente =true;
 			}
 		}
-		if (!CarteEnVente) {
+		if (!carteEnVente) {
 			Market newMarket = new Market(card.getId(), seller.getId());
+			mRepository.save(newMarket);
 			return "carte mise en vente";
+			
 			
 		}
 		else {
