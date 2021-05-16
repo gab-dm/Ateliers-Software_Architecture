@@ -51,7 +51,7 @@ private List<Card> CardList;
 	}
 	@Override
 	public String toString() {
-		return " name: "+this.name + "Mot de passe: " + this.pswd + "Solde : " + this.solde;
+		return " name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde;
 	}
 
 	public List<Card> getCardList() {
