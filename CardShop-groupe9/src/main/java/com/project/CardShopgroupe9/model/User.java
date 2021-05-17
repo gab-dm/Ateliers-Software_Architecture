@@ -90,7 +90,7 @@ private List<Card> CardList;
 		List<Card> cardsAvailable = cRepository.findAll();
         int nbCardsAvailable = cardsAvailable.size();
         Card randomCard;
-        for(int i = 0; i < nbCardsAvailable; i++){
+        for(int i = 0; i < 5; i++){
         	int randomNumber =random.nextInt(nbCardsAvailable);
             randomCard = cardsAvailable.get(randomNumber);
             cards.add(randomCard);

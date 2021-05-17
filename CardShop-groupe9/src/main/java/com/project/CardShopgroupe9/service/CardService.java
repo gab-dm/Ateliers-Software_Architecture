@@ -15,6 +15,8 @@ public class CardService {
 	@Autowired
 	
 	CardRepository cRepository;
+	
+	
 	public void addCard(Card c) {
 		Card createdCard=cRepository.save(c);
 		System.out.println(createdCard);

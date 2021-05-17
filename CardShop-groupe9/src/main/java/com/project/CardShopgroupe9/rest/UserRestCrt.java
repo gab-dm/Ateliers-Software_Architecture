@@ -42,7 +42,7 @@ public class UserRestCrt {
         if  ( !uService.addUser(user)) {
         	logger.error("Impossible. Ce nom existe deja ");
         	response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
-        	return null;
+        	return "erreur";
         }
         else {
         	
@@ -60,6 +60,7 @@ public class UserRestCrt {
     @RequestMapping(method=RequestMethod.POST,value="/login")
     public void getUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
         User u = uService.getUserByName(user.getName());
+        
         if (u != null && u.getPswd()==user.getPswd()) {
         	
         	Session session = sessionService.setSession(u, request);

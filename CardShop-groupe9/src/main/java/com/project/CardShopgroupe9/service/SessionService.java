@@ -19,6 +19,7 @@ import java.util.UUID;
 @Service
 public class SessionService {
 
+	@Autowired
 	UserRepository uRepository;
 	SessionRepository sRepository;
     /**

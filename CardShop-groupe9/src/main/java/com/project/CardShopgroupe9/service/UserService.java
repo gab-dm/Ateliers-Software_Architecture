@@ -58,13 +58,13 @@ public class UserService {
 		
 	}
 	//On supprime l'utilisateur depuis son Nom.
-		public void DeleteUserByName (String name ) {
-			User user =uRepository.findByName(name).get();
-			uRepository.deleteById(user.getId());
-			return;
-			
-		}
-
-
+	public void DeleteUserByName (String name ) {
+		User user =uRepository.findByName(name).get();
+		uRepository.deleteById(user.getId());
+		return;
+		
+	}
+	
+	
 	
 }

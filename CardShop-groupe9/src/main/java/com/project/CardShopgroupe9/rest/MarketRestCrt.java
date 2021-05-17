@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,16 +21,21 @@ import com.project.CardShopgroupe9.model.Market;
 import com.project.CardShopgroupe9.repository.CardRepository;
 import com.project.CardShopgroupe9.repository.MarketRepository;
 import com.project.CardShopgroupe9.repository.UserRepository;
+import com.project.CardShopgroupe9.service.MarketService;
 import com.project.CardShopgroupe9.service.SessionService;
 import com.project.CardShopgroupe9.service.UserService;
 
 public class MarketRestCrt {
 
+	@Autowired
 	UserService uService;
 	UserRepository uRepository;
 	CardRepository cRepository;
 	MarketRepository mRepository;
+	MarketService mService;
+	
 	private SessionService sessionService;
+	
 	
 	 public static final Logger logger = LoggerFactory.getLogger(UserRestCrt.class);
 	
@@ -37,27 +43,13 @@ public class MarketRestCrt {
     public String BuyCard(Market market, String token, int cardId,  int sellerId, HttpServletResponse response,HttpServletRequest request) {
        
 		User buyer = sessionService.isLogged(token , request);
-	 	User seller = uRepository.findById(sellerId).get();
-	 	Card card = cRepository.findById(cardId).get();
+	 	User seller = uRepository.findById(sellerId)
+	 			.orElseThrow(() -> new RuntimeException("Pas d'utilisateur"));
+	 	Card card = cRepository.findById(cardId).orElse(new Card());
+	 	
+	 	return mService.buyACard(buyer, seller, card, market);
 	 	
 	 	
-	 	if (buyer.getSolde()<Card.getPrice()) {
-			
-			logger.error("Pas assez d'argent");
-			return "Pas assez d'argent";
-		}
-		else {
-			buyer.setSolde(buyer.getSolde()-Card.getPrice());
-			buyer.addCard(card);
-			uService.UpdateUser(buyer);
-			
-			seller.setSolde(seller.getSolde()+Card.getPrice());
-			seller.removeCard(card);
-			uService.UpdateUser(seller);
-			
-			mRepository.delete(market);
-			return "transaction effectuee";
-		} 
     }
 	@RequestMapping(method=RequestMethod.POST,value="/sell")
 	public String SellCard(String token,  int cardId, HttpServletResponse response,HttpServletRequest request) {
@@ -66,25 +58,8 @@ public class MarketRestCrt {
 	 	
 	 	Card card = cRepository.findById(cardId).get();
 	 	
-	 	List<Market> MarketList = mRepository.findAll();
+	 	return mService.sellACard(seller, card);
 		
-	 	boolean carteEnVente = false;
-		for (Market market : MarketList) {
-			
-			
-			if ((market.getCardId() == card.getId()) && market.getUserId()==seller.getId() ) {
-				carteEnVente =true;
-			}
-		}
-		if (!carteEnVente) {
-			Market newMarket = new Market(card.getId(), seller.getId());
-			mRepository.save(newMarket);
-			return "carte mise en vente";
-			
-			
-		}
-		else {
-			return "la carte est déja en vente";
-		}
+	 	
     }
 }
