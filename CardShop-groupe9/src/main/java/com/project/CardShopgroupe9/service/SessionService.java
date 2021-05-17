@@ -21,6 +21,7 @@ public class SessionService {
 
 	@Autowired
 	UserRepository uRepository;
+	@Autowired
 	SessionRepository sRepository;
     /**
      * Methode de vérification d'un token

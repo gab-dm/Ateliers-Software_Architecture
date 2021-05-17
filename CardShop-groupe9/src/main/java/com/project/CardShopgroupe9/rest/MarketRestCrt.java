@@ -29,9 +29,16 @@ public class MarketRestCrt {
 
 	@Autowired
 	UserService uService;
+	@Autowired
 	UserRepository uRepository;
+	
+	@Autowired
 	CardRepository cRepository;
+	
+	@Autowired
 	MarketRepository mRepository;
+	
+	@Autowired
 	MarketService mService;
 	
 	private SessionService sessionService;

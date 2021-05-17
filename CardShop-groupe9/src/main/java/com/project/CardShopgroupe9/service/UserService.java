@@ -19,7 +19,8 @@ public class UserService {
 	UserRepository uRepository;
 	
 	public boolean addUser(User u) {
-		if(uRepository.findByName(u.getName())==null) {
+		//System.out.println(uRepository.findByName(u.getName()));
+		if(!uRepository.findByName(u.getName()).isPresent()) {
 			User createdUser=uRepository.save(u);
 			System.out.println(createdUser);
 			return true;

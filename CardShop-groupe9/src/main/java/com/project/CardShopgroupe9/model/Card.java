@@ -1,8 +1,11 @@
 package com.project.CardShopgroupe9.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity(name="Card")
 public final class Card {
@@ -17,14 +20,15 @@ private String description;
 private String imgUrl;
 private Integer attack;
 private Integer defence;
-private String family;
-private Integer energy;
+
+@ManyToMany
+private List<User> userList;
 private static Integer price;
 	
 	public Card() {}
 
 
-	public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, String family, Integer energy, Integer price ) {
+	public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, Integer price ) {
 		
 		super();
 		this.name = name;
@@ -33,12 +37,24 @@ private static Integer price;
 		this.imgUrl = imgUrl; 
 		this.attack = attack;
 		this.defence = defence;
-		this.family = family;
-		this.energy = energy;
+		
 		Card.price = price;
 		
 	}
 
+public Card ( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
+		
+		super();
+		this.name = name;
+		this.hp = hp;
+		this.description = description ;
+		this.imgUrl = imgUrl; 
+		this.attack = attack;
+		this.defence = defence;
+		
+		Card.price = 500;
+		
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -95,20 +111,6 @@ private static Integer price;
 		return defence;
 	}
 	
-	public void setEnergy(Integer energy) {
-		this.energy = energy;
-	}
-	
-	public Integer getEnergy() {
-		return energy;
-	}
-	public void setFamily(String family) {
-		this.family = family;
-	}
-	
-	public String getFamily() {
-		return family;
-	}
 	
 	public void setPrice(Integer price) {
 		Card.price = price;
@@ -120,7 +122,7 @@ private static Integer price;
 	
 	@Override
 	public String toString() {
-		return "Carte ["+getId()+"]: name:"+getName()+", family:"+getFamily() +", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence() +", energy:"+getEnergy();
+		return "Carte ["+getId()+"]: name:"+getName() +", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence();
 	}
 	
 

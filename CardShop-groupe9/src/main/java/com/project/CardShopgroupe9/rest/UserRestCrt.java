@@ -1,6 +1,7 @@
 package com.project.CardShopgroupe9.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +22,31 @@ import com.project.CardShopgroupe9.service.UserService;
  
 
 @RestController
+@RequestMapping("/register")
 public class UserRestCrt {
-    @Autowired
-    UserService uService;
-    SessionService sessionService;
+    
+    private final UserService uService;
+    private final SessionService sessionService;
+    
+    
+    public UserRestCrt(UserService uService, SessionService sessionService) {
+    	this.sessionService = sessionService;
+    	this.uService = uService;
+    }
     
     //piqué sur http://websystique.com/spring-boot/spring-boot-rest-api-example/, pour afficher un message d'erreur
     public static final Logger logger = LoggerFactory.getLogger(UserRestCrt.class);
    
+    
+    
+    
+    
+    @GetMapping("/test")
+    public String test() {
+    	return "hello";
+    }
+    
+    
     
     /**
      * requete pour la création d'un nouvel utilisateur
@@ -36,9 +54,12 @@ public class UserRestCrt {
      * @param user
      * @param response
      */
+    
+    
     @RequestMapping(method=RequestMethod.POST,value="/register")
     public String addUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
-       
+    	System.out.println(response );
+    	System.out.println(request );
         if  ( !uService.addUser(user)) {
         	logger.error("Impossible. Ce nom existe deja ");
         	response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
@@ -50,6 +71,7 @@ public class UserRestCrt {
         	response.setStatus( HttpServletResponse.SC_CREATED);
         	return session.getToken(); //jeton de session pour l'utilisateur courant
         }
+    	
 		
     }
     /**

@@ -10,9 +10,9 @@ public class Market {
 	@Id
 	@GeneratedValue
 	private int marketId;
-	@Id
+	
 	private int cardId;
-	@Id
+	
 	private int userId;
 	
 	

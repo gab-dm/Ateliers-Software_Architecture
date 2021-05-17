@@ -8,6 +8,7 @@ import com.project.CardShopgroupe9.model.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
+	Optional<User> EMPTY = null;
 	public Optional<User> findById(int id);
 	public Optional<User> findByName(String name);
 	

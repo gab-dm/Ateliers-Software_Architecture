@@ -7,6 +7,9 @@ import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.project.CardShopgroupe9.repository.CardRepository;
@@ -26,8 +29,17 @@ private Integer id;
 private String name;
 private String pswd;
 private float solde;
+@ManyToMany
+@JoinTable(
+		  name = "card_user", 
+		  joinColumns = @JoinColumn(name = "user_id"), 
+		  inverseJoinColumns = @JoinColumn(name = "card_id"))
 private List<Card> CardList;
 
+	public User() {
+		this.CardList=new ArrayList<Card>();
+	}
+	
 	
 	public User ( String _name , String _pswd ) {
 		
@@ -57,7 +69,7 @@ private List<Card> CardList;
 	}
 	@Override
 	public String toString() {
-		return " name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde;
+		return " name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde + " deck : "+ this.CardList;
 	}
 
 	public List<Card> getCardList() {
