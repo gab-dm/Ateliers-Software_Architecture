@@ -15,6 +15,7 @@ public class MarketService {
 	
 	@Autowired	
 	MarketRepository mRepository;
+	@Autowired
 	UserService uService;
 	
 	public List<Market> getAllMarket() {

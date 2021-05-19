@@ -1,11 +1,16 @@
 package com.project.CardShopgroupe9.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.CardShopgroupe9.model.Card;
 import com.project.CardShopgroupe9.model.User;
+import com.project.CardShopgroupe9.repository.CardRepository;
 import com.project.CardShopgroupe9.repository.UserRepository;
 
 
@@ -17,10 +22,16 @@ public class UserService {
 	@Autowired
 	
 	UserRepository uRepository;
+	@Autowired
+	CardRepository cRepository;
+	
+	
 	
 	public boolean addUser(User u) {
 		//System.out.println(uRepository.findByName(u.getName()));
 		if(!uRepository.findByName(u.getName()).isPresent()) {
+			
+			u.setCardList(generateCardList());
 			User createdUser=uRepository.save(u);
 			System.out.println(createdUser);
 			return true;
@@ -28,6 +39,20 @@ public class UserService {
 		else {
 			return false;
 		}
+	}
+	public List<Card> generateCardList(){
+		Random random = new Random(System.currentTimeMillis()); //Pour avoir une seed "unique", on utilise la date
+		
+		List<Card> cards = new ArrayList<>();
+		List<Card> cardsAvailable = cRepository.findAll();
+        int nbCardsAvailable = cardsAvailable.size();
+        Card randomCard;
+        for(int i = 0; i < 4; i++){
+        	int randomNumber =random.nextInt(nbCardsAvailable);
+            randomCard = cardsAvailable.get(randomNumber);
+            cards.add(randomCard);
+        }
+        return cards;
 	}
 	
 	public User getUserById(int id) {
