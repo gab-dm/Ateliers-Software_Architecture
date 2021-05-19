@@ -31,10 +31,11 @@ public class SessionService {
      * @return user
      */
     public User isLogged (String token, HttpServletRequest request){
+    	System.out.println("ok");
         String IP = this.getIP(request);
         Optional<Session> session = sRepository.findByTokenAndIp(token, IP);
         
-        if (session != null){ // si le token et l'ip correspondent
+        if (session.isPresent()){ // si le token et l'ip correspondent
             User user = uRepository.findById(session.get().getIdUser()).get();
             return user;
         }else{
@@ -66,9 +67,10 @@ public class SessionService {
     public Session setSession(User user, HttpServletRequest request){
         //Création d'une session avec la génération d'un token aléatoire
         Session session = new Session(user.getId(), UUID.randomUUID().toString().replace("-", ""), this.getIP(request));
-        Session exist = sRepository.findByIdUser(user.getId()).get();
-        if(exist != null){
-        	sRepository.deleteById(exist.getId());
+        System.out.println(user);
+        Optional<Session> exist = sRepository.findByIdUser(user.getId());
+        if(exist.isPresent()){
+        	sRepository.deleteById(exist.get().getId());
         }
         sRepository.save(session);
         return session;

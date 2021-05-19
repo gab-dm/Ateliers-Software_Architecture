@@ -30,7 +30,7 @@ public final class User {
 	private Integer id;
 	private String name;
 	private String pswd;
-	private float solde;
+	private float solde=500;
 	@ManyToMany
 	@JoinTable(
 			  name = "card_user", 
@@ -76,7 +76,7 @@ public final class User {
 		}
 		@Override
 		public String toString() {
-			return " name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde + " deck : "+ this.CardList;
+			return "id :"+ this.id+ "name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde + " deck : "+ this.CardList;
 		}
 	
 		public List<Card> getCardList() {

@@ -22,7 +22,7 @@ import com.project.CardShopgroupe9.service.UserService;
  
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/user")
 public class UserRestCrt {
     
 	
@@ -84,7 +84,7 @@ public class UserRestCrt {
     public void getUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
         User u = uService.getUserByName(user.getName());
         
-        if (u != null && u.getPswd()==user.getPswd()) {
+        if ((u != null) && (u.getPswd().equals(user.getPswd()))) {
         	
         	Session session = sessionService.setSession(u, request);
         	Cookie token = new Cookie("session", session.getToken()); // on crée un cookie contenant le token de session que l'on va retourner

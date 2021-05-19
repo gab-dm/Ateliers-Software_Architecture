@@ -47,10 +47,16 @@ public class UserService {
 		List<Card> cardsAvailable = cRepository.findAll();
         int nbCardsAvailable = cardsAvailable.size();
         Card randomCard;
-        for(int i = 0; i < 4; i++){
+        while(cards.size()<5){
+        	
         	int randomNumber =random.nextInt(nbCardsAvailable);
             randomCard = cardsAvailable.get(randomNumber);
-            cards.add(randomCard);
+            if (randomCard.getIsFree()) {
+            	randomCard.setNotFree();
+            	cards.add(randomCard);
+            	
+            }
+            
         }
         return cards;
 	}

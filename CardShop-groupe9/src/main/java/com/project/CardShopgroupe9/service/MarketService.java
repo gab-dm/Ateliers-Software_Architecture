@@ -60,6 +60,7 @@ public class MarketService {
 		}
 		if (!carteEnVente) {
 			Market newMarket = new Market(card.getId(), seller.getId());
+			System.out.println("MArket id :"+newMarket.getMarketId());
 			mRepository.save(newMarket);
 			return "carte mise en vente";
 			

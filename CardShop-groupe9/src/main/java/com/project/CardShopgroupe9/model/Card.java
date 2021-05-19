@@ -20,6 +20,7 @@ private String description;
 private String imgUrl;
 private Integer attack;
 private Integer defence;
+private boolean isFree = true;
 
 @ManyToMany
 private List<User> userList;
@@ -52,7 +53,7 @@ public Card ( String name , Integer hp, String description, String imgUrl, Integ
 		this.attack = attack;
 		this.defence = defence;
 		
-		Card.price = 500;
+		Card.price = 400;
 		
 	}
 	public Integer getId() {
@@ -119,7 +120,12 @@ public Card ( String name , Integer hp, String description, String imgUrl, Integ
 	public static Integer getPrice() {
 		return price;
 	}
-	
+	public boolean getIsFree() {
+		return this.isFree;
+	}
+	public void setNotFree() {
+		this.isFree = false;
+	}
 	@Override
 	public String toString() {
 		return "Carte ["+getId()+"]: name:"+getName() +", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence();
