@@ -1,5 +1,7 @@
 package com.project.CardShopgroupe9.rest;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,13 +49,14 @@ public class MarketRestCrt {
 	 public static final Logger logger = LoggerFactory.getLogger(UserRestCrt.class);
 	
 	@RequestMapping(method=RequestMethod.POST,value="/buy")
-    public String BuyCard(int marketId, String token, int cardId,  int sellerId, HttpServletResponse response,HttpServletRequest request) {
+    public String BuyCard(Integer marketId, String token, Integer cardId,  Integer sellerId, HttpServletResponse response,HttpServletRequest request) {
        
 		User buyer = sessionService.isLogged(token , request);
 	 	User seller = uRepository.findById(sellerId)
 	 			.orElseThrow(() -> new RuntimeException("Pas d'utilisateur"));
 	 	Card card = cRepository.findById(cardId).orElse(new Card());
-	 	Market market = mRepository.findById(marketId);
+	 	Market market = mRepository.findById(marketId).orElseThrow(() -> new RuntimeException("Pas de market"));;
+	 	System.out.println("this market id is :"+market.getMarketId());
 	 	return mService.buyACard(buyer, seller, card, market);
 	 	
 	 	

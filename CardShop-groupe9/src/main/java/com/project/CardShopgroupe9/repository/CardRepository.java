@@ -11,6 +11,6 @@ import java.util.Optional;
 
 public interface CardRepository extends CrudRepository<Card, Integer> {
 	
-	public Optional<Card> findById(int id);
+	public Optional<Card> findById(Integer id);
 	public List<Card> findAll();
 }

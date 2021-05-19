@@ -9,6 +9,6 @@ import com.project.CardShopgroupe9.model.Session;
 public interface SessionRepository extends CrudRepository<Session, Integer> {
 
 	public  Optional<Session> findByTokenAndIp(String Token, String Ip);
-	public  Optional<Session> findByIdUser(int id);
+	public  Optional<Session> findByIdUser(Integer id);
 
 }

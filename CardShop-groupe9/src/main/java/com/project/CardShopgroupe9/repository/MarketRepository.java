@@ -13,5 +13,5 @@ import com.project.CardShopgroupe9.model.User;
 public interface MarketRepository extends CrudRepository<Market, Integer>{
 	
 	public List<Market> findAll();
-	public Market findById(int id);
+	public Optional<Market> findById(Integer id);
 }

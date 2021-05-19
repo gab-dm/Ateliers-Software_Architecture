@@ -1,19 +1,22 @@
 package com.project.CardShopgroupe9.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity(name="Market")
-public class Market {
+public final class Market {
 	@Id
 	@GeneratedValue
-	private int marketId;
+	private Integer id;
 	
-	private int cardId;
 	
-	private int userId;
+	
+	private Integer cardId;
+	
+	private Integer userId;
 	
 	
 	public Market() {}
@@ -26,27 +29,27 @@ public class Market {
 	
 	
 	
-	public int getMarketId() {
-		return marketId;
+	public Integer getMarketId() {
+		return id;
 	}
 	
-	public void setMarketId(int marketId) {
-		this.marketId = marketId;
+	public void setMarketId(Integer marketId) {
+		this.id = marketId;
 	}
 	
-	public int getCardId() {
+	public Integer getCardId() {
 		return cardId;
 	}
 	
-	public void setCardId(int cardId) {
+	public void setCardId(Integer cardId) {
         this.cardId = cardId;
     }
 	
-	public int getUserId() {
+	public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 	

@@ -61,7 +61,7 @@ public class MarketService {
 		if (!carteEnVente) {
 			Market newMarket = new Market(card.getId(), seller.getId());
 			System.out.println("MArket id :"+newMarket.getMarketId());
-			mRepository.save(newMarket);
+			this.addMarket(newMarket);
 			return "carte mise en vente";
 			
 			
@@ -71,5 +71,10 @@ public class MarketService {
 		}
 		
 	}
+	public void addMarket(Market m) {
+		Market createdMarket=mRepository.save(m);
+		System.out.println(createdMarket);
+	}
+	
 	
 }

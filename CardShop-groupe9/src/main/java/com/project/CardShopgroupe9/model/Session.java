@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 public class Session {
     @Id @GeneratedValue
-    private int id;
-    private int idUser;
+    private Integer id;
+    private Integer idUser;
     private String token;
     private String ip;
 
@@ -27,25 +27,25 @@ public class Session {
      * @param token
      * @param ip
      */
-    public Session(int idUser, String token, String ip) {
+    public Session(Integer idUser, String token, String ip) {
         this.idUser=idUser;
         this.token = token;
         this.ip=ip;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 

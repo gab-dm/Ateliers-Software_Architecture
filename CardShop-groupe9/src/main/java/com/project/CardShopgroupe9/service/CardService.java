@@ -22,7 +22,7 @@ public class CardService {
 		System.out.println(createdCard);
 	}
 	
-	public Card getCard(int id) {
+	public Card getCard(Integer id) {
 		Optional<Card> cOpt =cRepository.findById(id);
 		if (cOpt.isPresent()) {
 			return cOpt.get();

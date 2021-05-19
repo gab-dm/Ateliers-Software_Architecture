@@ -61,7 +61,7 @@ public class UserService {
         return cards;
 	}
 	
-	public User getUserById(int id) {
+	public User getUserById(Integer id) {
 		Optional<User> uOpt =uRepository.findById(id);
 		if (uOpt.isPresent()) {
 			return uOpt.get();
