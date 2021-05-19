@@ -1,0 +1,17 @@
+td{
+    padding:3px;
+  } 
+  th{
+    color:#fff;
+    background-color:dimgray
+  } 
+  table a{color:#000}
+  tbody tr{
+    background-color:#fff;
+  }
+  tbody tr:nth-child(even){
+    background-color:gainsboro;
+  }
+  tbody tr:hover{
+    background-color:yellowgreen;
+  }
