@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+\\fs04.cpe.fr\Documents\GitHub\Ateliers-Software_Architecture\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
